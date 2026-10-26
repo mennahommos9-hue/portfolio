@@ -22,3 +22,10 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Deploy to GitHub Pages
+
+The `main` branch is deployed automatically by GitHub Actions. After pushing, open
+**Settings → Pages** in the repository and set **Build and deployment → Source**
+to **GitHub Actions**. The site will be available at
+https://mennahommos9-hue.github.io/portfolio/.
