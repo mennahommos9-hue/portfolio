@@ -147,7 +147,7 @@ export function Hero() {
             <div className="absolute -bottom-3 -left-5 h-16 w-16 rounded-full bg-olive shadow-soft sm:h-20 sm:w-20" />
             <div className="relative overflow-hidden rounded-t-full border border-primary/30 bg-primary/20 p-3 shadow-soft sm:p-4">
               <img
-                src="/menna-profile.jpg"
+                src={`${import.meta.env.BASE_URL}menna-profile.jpg`}
                 alt="Portrait of Menna Mohamed Hommos"
                 width={768}
                 height={960}
