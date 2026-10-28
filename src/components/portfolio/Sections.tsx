@@ -54,7 +54,6 @@ export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const yArch = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 140]);
   const yText = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -60]);
   const line = (d: number) => ({
     initial: reduce ? false : { y: "105%" },
@@ -74,107 +73,117 @@ export function Hero() {
       className="relative min-h-dvh overflow-hidden px-6 pb-16 pt-32 md:px-10"
     >
       <div className="grid-lines absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_70%_40%,black,transparent_70%)]" />
-      {/* terracotta arch */}
       <motion.div
-        style={{ y: yArch }}
-        className="absolute -right-28 top-20 h-[300px] w-[200px] opacity-30 md:-right-10 md:opacity-100 lg:right-[3%] lg:top-16 lg:h-[640px] lg:w-[420px]"
+        style={{ y: yText }}
+        className="relative z-10 mx-auto grid min-h-[calc(100dvh-8rem)] max-w-7xl grid-cols-[minmax(0,1fr)_minmax(6rem,32%)] items-start gap-4 sm:grid-cols-12 sm:items-center sm:gap-8 lg:gap-10"
       >
-        <motion.div {...fade(0.3)} className="h-full w-full rounded-t-full bg-primary/90" />
-        <div className="absolute -left-10 bottom-16 hidden h-44 w-44 lg:block rounded-full bg-olive/80 animate-float" />
-        <div className="absolute left-8 top-24 h-[85%] w-[85%] rounded-t-full border border-primary-foreground/40" />
-        {/* code card */}
-        <motion.div
-          {...fade(1.1)}
-          className="absolute -left-24 top-[22%] hidden w-72 lg:block rounded-lg border border-border bg-card/95 p-4 font-mono text-[11px] leading-relaxed shadow-lift md:block"
-        >
-          <div className="mb-3 flex gap-1.5">
-            <span className="h-2 w-2 rounded-full bg-primary" />
-            <span className="h-2 w-2 rounded-full bg-sand" />
-            <span className="h-2 w-2 rounded-full bg-olive" />
-          </div>
-          <p>
-            <span className="text-primary">GET</span> /api/v1/ideas
-          </p>
-          <p className="text-muted-foreground">→ 200 OK · secure · scalable</p>
-          <p className="mt-2">
-            <span className="text-olive">app</span>.use(<span className="text-primary">auth</span>)
-          </p>
-          <p className="mt-2 flex items-center gap-2 text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-olive animate-pulse-dot" /> server
-            listening on :3000
-          </p>
-        </motion.div>
-      </motion.div>
-      {/* rotating badge */}
-      <motion.div
-        {...fade(1.3)}
-        className="absolute right-[30%] top-[74%] hidden h-32 w-32 xl:block"
-      >
-        <svg viewBox="0 0 100 100" className="h-full w-full animate-spin-slow text-foreground">
-          <defs>
-            <path id="c" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" />
-          </defs>
-          <text fontSize="9.5" letterSpacing="3" fill="currentColor">
-            <textPath href="#c">BACKEND • DEVELOPER • API • DATA •</textPath>
-          </text>
-        </svg>
-        <Braces className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 text-primary" />
-      </motion.div>
-
-      <motion.div style={{ y: yText }} className="relative z-10 mx-auto max-w-7xl">
-        <motion.p {...fade(0.5)} className="label-caps text-primary">
-          Backend Developer • Software Engineering
-        </motion.p>
-        <h1 className="mt-6 font-display font-medium uppercase leading-[0.82] tracking-[-0.02em] text-primary">
-          <span className="block overflow-hidden">
-            <motion.span {...line(0.6)} className="block text-[clamp(3.5rem,11vw,10rem)]">
-              Menna
-            </motion.span>
-          </span>
-          <span className="block overflow-hidden">
-            <motion.span
-              {...line(0.72)}
-              className="block pl-[0.5em] text-[clamp(2.2rem,7vw,6rem)] italic normal-case text-foreground/80"
+        <div className="sm:col-span-7">
+          <motion.p {...fade(0.5)} className="label-caps text-primary">
+            Backend Developer • Software Engineering
+          </motion.p>
+          <h1 className="mt-6 font-display font-medium uppercase leading-[0.82] tracking-[-0.02em] text-primary">
+            <span className="block overflow-hidden">
+              <motion.span {...line(0.6)} className="block text-[clamp(2.5rem,10vw,9rem)]">
+                Menna
+              </motion.span>
+            </span>
+            <span className="block overflow-hidden">
+              <motion.span
+                {...line(0.72)}
+                className="block pl-[0.5em] text-[clamp(1.7rem,6.5vw,5.5rem)] italic normal-case text-foreground/80"
+              >
+                Mohamed
+              </motion.span>
+            </span>
+            <span className="block overflow-hidden">
+              <motion.span {...line(0.84)} className="block text-[clamp(2.5rem,10vw,9rem)]">
+                Hommos
+              </motion.span>
+            </span>
+          </h1>
+          <motion.p
+            {...fade(1.1)}
+            className="mt-6 font-script text-[clamp(1.8rem,4vw,3rem)] leading-tight text-foreground/85"
+          >
+            I Turn Ideas into Powerful Backends.
+          </motion.p>
+          <motion.p
+            {...fade(1.25)}
+            className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
+          >
+            I help startups and businesses transform their ideas into secure, reliable, and scalable
+            web applications through smart APIs, efficient databases, and backend solutions that
+            make technology work seamlessly behind the scenes.
+          </motion.p>
+          <motion.div {...fade(1.4)} className="mt-10 flex flex-wrap gap-4">
+            <a
+              href="#projects"
+              className="group inline-flex items-center gap-3 rounded-full bg-primary px-7 py-4 text-sm font-medium tracking-wide text-primary-foreground shadow-soft transition-all duration-500 hover:-translate-y-0.5 hover:bg-clay-deep hover:shadow-lift"
             >
-              Mohamed
-            </motion.span>
-          </span>
-          <span className="block overflow-hidden">
-            <motion.span {...line(0.84)} className="block text-[clamp(3.5rem,11vw,10rem)]">
-              Hommos
-            </motion.span>
-          </span>
-        </h1>
-        <motion.p
-          {...fade(1.1)}
-          className="mt-6 font-script text-[clamp(1.8rem,4vw,3rem)] leading-tight text-foreground/85"
+              Explore My Work{" "}
+              <ArrowDownRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-[-45deg]" />
+            </a>
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-3 rounded-full border border-foreground/30 px-7 py-4 text-sm font-medium tracking-wide transition-all duration-500 hover:border-primary hover:text-primary"
+            >
+              Let's Connect{" "}
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </a>
+          </motion.div>
+        </div>
+        <motion.figure
+          {...fade(0.9)}
+          className="relative mx-auto w-full max-w-[22rem] sm:col-span-5"
         >
-          I Turn Ideas into Powerful Backends.
-        </motion.p>
-        <motion.p
-          {...fade(1.25)}
-          className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
-        >
-          I help startups and businesses transform their ideas into secure, reliable, and scalable
-          web applications through smart APIs, efficient databases, and backend solutions that make
-          technology work seamlessly behind the scenes.
-        </motion.p>
-        <motion.div {...fade(1.4)} className="mt-10 flex flex-wrap gap-4">
-          <a
-            href="#projects"
-            className="group inline-flex items-center gap-3 rounded-full bg-primary px-7 py-4 text-sm font-medium tracking-wide text-primary-foreground shadow-soft transition-all duration-500 hover:-translate-y-0.5 hover:bg-clay-deep hover:shadow-lift"
-          >
-            Explore My Work{" "}
-            <ArrowDownRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-[-45deg]" />
-          </a>
-          <a
-            href="#contact"
-            className="group inline-flex items-center gap-3 rounded-full border border-foreground/30 px-7 py-4 text-sm font-medium tracking-wide transition-all duration-500 hover:border-primary hover:text-primary"
-          >
-            Let's Connect{" "}
-            <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </a>
-        </motion.div>
+          <div className="relative isolate">
+            <motion.div
+              aria-hidden
+              className="absolute -inset-3 -top-6 rounded-t-full bg-gradient-to-br from-primary/60 via-primary/80 to-clay-deep shadow-soft"
+              animate={reduce ? undefined : { y: [0, -8, 0] }}
+              transition={{ duration: 7, ease: "easeInOut", repeat: Infinity }}
+            />
+            <div className="absolute -right-4 -top-2 h-[96%] w-[96%] rounded-t-full border border-primary/60" />
+            <div className="absolute -bottom-3 -left-5 h-16 w-16 rounded-full bg-olive shadow-soft sm:h-20 sm:w-20" />
+            <div className="relative overflow-hidden rounded-t-full border border-primary/30 bg-primary/20 p-3 shadow-soft sm:p-4">
+              <img
+                src="/menna-profile.jpg"
+                alt="Portrait of Menna Mohamed Hommos"
+                width={768}
+                height={960}
+                fetchPriority="high"
+                decoding="async"
+                className="block h-auto w-full rounded-t-full"
+              />
+            </div>
+            <motion.div
+              aria-hidden
+              className="absolute -left-7 top-[18%] hidden rounded-full border border-sand/30 bg-foreground/90 p-3 font-mono text-sm text-sand shadow-lift sm:block"
+              animate={reduce ? undefined : { y: [0, -8, 0], rotate: [0, -6, 0] }}
+              transition={{ duration: 5, ease: "easeInOut", repeat: Infinity }}
+            >
+              {"</>"}
+            </motion.div>
+            <motion.div
+              aria-hidden
+              className="absolute -right-5 top-[52%] hidden rounded-full border border-sand/30 bg-foreground/90 p-3 font-mono text-sm text-sand shadow-lift sm:block"
+              animate={reduce ? undefined : { y: [0, 8, 0], rotate: [0, 6, 0] }}
+              transition={{ duration: 6, ease: "easeInOut", repeat: Infinity, delay: 0.6 }}
+            >
+              {"{ }"}
+            </motion.div>
+            <motion.span
+              aria-hidden
+              className="absolute right-[8%] top-[12%] h-3 w-3 rounded-full bg-sand shadow-[0_0_18px_4px_rgb(255_238_210_/_45%)]"
+              animate={reduce ? undefined : { scale: [1, 1.35, 1], opacity: [0.65, 1, 0.65] }}
+              transition={{ duration: 3, ease: "easeInOut", repeat: Infinity }}
+            />
+          </div>
+          <figcaption className="relative mt-5 hidden items-center justify-between gap-4 px-2 sm:flex">
+            <span className="font-display text-xl text-foreground">Menna Hommos</span>
+            <span className="label-caps !text-[0.62rem] text-olive">Backend Developer</span>
+          </figcaption>
+        </motion.figure>
       </motion.div>
 
       <motion.a
